@@ -46,6 +46,8 @@ Patch2:		db-5.1.19-tcl-link.patch
 Patch3:		arm-thumb-mutex_db5.patch
 # fedora patches
 Patch101:	db-4.7.25-jni-include-dir.patch
+# ubuntu patches
+Patch102:	006-mutex_alignment.patch
 
 BuildConflicts:	libreoffice-core
 BuildRequires:	ed
