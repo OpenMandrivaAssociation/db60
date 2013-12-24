@@ -14,7 +14,7 @@
 %define libdbnss	%mklibname %{sname}nss %{api}
 %define devdbnss	%mklibname %{sname}nss %{api} -d
 
-%ifnarch %[mips} %{arm}
+%ifnarch %[mips} %{arm} aarch64
 %bcond_without java
 %define gcj_support 0
 %endif
