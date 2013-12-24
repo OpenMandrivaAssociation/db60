@@ -213,6 +213,13 @@ find . -type f -perm 0444 -exec chmod 644 {} \;
 rm -r lang/sql/jdbc/doc
 %apply_patches
 
+# copy modern config.* files to target
+for f in config.guess config.sub ; do
+        test -f /usr/share/libtool/config/$f || continue
+        find . -type f -name $f -exec cp /usr/share/libtool/config/$f \{\} \;
+done
+
+
 pushd dist
 libtoolize --copy --force
 cat %{_datadir}/aclocal/libtool.m4 >> aclocal.m4
