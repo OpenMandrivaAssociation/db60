@@ -1,5 +1,6 @@
 %define sname	db
-%define api	6.0
+%define api %(echo %{version}|cut -d. -f1,2)
+%define shortapi %(echo %{version}|cut -d. -f1,1)
 %define binext	%(echo %{api} | sed -e 's|\\.||g')
 
 %define libname		%mklibname %{sname} %{api}
@@ -34,7 +35,7 @@
 Summary:	The Berkeley DB database library for C
 Name:		%{sname}%{binext}
 Version:	6.0.20
-Release:	5
+Release:	6
 License:	BSD
 Group:		System/Libraries
 Url:		http://www.oracle.com/technology/software/products/berkeley-db/
@@ -166,8 +167,10 @@ Requires:	%{libdbjava} = %{EVRD}
 %endif
 Requires:	%{libdbcxx} = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
-Provides:	%{sname}5-devel = %{EVRD}
 Provides:	%{sname}-devel = %{EVRD}
+# MD remove the following line if there is a newer fork of the same api
+# ie: this is 6.0 and there is a fork of 6.1 or 6.2....
+Provides:	%{sname}%{shortapi}-devel = %{EVRD}
 
 %description -n	%{devname}
 This package contains the header files, libraries, and documentation for
@@ -198,8 +201,6 @@ Group:		Development/Databases
 Requires:	%{libdbnss} = %{EVRD}
 Provides:	dbnss%{binext}-devel = %{EVRD}
 Provides:	db_nss%{binext}-devel = %{EVRD}
-Provides:	dbnss5-devel = %{EVRD}
-Provides:	db_nss5-devel = %{EVRD}
 
 %description -n	%{devdbnss}
 This package contains the header files and libraries for building nss
