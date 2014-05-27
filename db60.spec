@@ -1,5 +1,5 @@
 %define sname	db
-%define version 6.0.20
+%define version 6.0.30
 %define api %(echo %{version}|cut -d. -f1,2)
 %define shortapi %(echo %{version}|cut -d. -f1,1)
 %define binext	%(echo %{api} | sed -e 's|\\.||g')
