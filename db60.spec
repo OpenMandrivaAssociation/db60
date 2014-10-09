@@ -17,7 +17,7 @@
 %define devdbnss	%mklibname %{sname}nss %{api} -d
 
 %ifnarch %[mips} %{arm} aarch64
-%bcond_without java
+%bcond_with java
 %define gcj_support 0
 %endif
 
@@ -51,7 +51,6 @@ Patch101:	db-4.7.25-jni-include-dir.patch
 # ubuntu patches
 Patch102:	006-mutex_alignment.patch
 
-BuildConflicts:	libreoffice-core
 BuildRequires:	ed
 BuildRequires:	libtool
 BuildRequires:	systemtap-devel
