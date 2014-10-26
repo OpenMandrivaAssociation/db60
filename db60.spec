@@ -53,7 +53,6 @@ Patch102:	006-mutex_alignment.patch
 
 BuildRequires:	ed
 BuildRequires:	libtool
-BuildRequires:	systemtap-devel
 %if %{with sql}
 BuildRequires:	pkgconfig(sqlite3)
 %endif
@@ -65,6 +64,7 @@ BuildRequires:	db1-devel
 %endif
 %if %{with java}
 BuildRequires:	java-rpmbuild
+BuildRequires:	java-devel
 BuildRequires:	sharutils
 # required for jni.h
 BuildRequires:	gcj-devel
@@ -282,15 +282,13 @@ export JAVA=%{java}
 export JAVACFLAGS="-nowarn"
 JAVA_MAKE="JAR=%{jar} JAVAC=%{javac} JAVACFLAGS="-nowarn" JAVA=%{java}"
 %endif
-
 pushd build_unix
 CONFIGURE_TOP="../dist" \
-%configure2_5x \
+%configure \
 	--includedir=%{_includedir}/%{name} \
 	--enable-shared \
 	--enable-static \
 	--enable-dbm \
-	--enable-systemtap \
 	--enable-o_direct \
 %if %{with sql}
 	--enable-sql \
@@ -355,12 +353,11 @@ popd
 mkdir build_nss
 pushd build_nss
 CONFIGURE_TOP="../dist" \
-%configure2_5x \
+%configure \
 	--includedir=%{_includedir}/db_nss \
 	--enable-shared \
 	--disable-static \
 	--enable-dbm \
-	--enable-systemtap \
 	--enable-o_direct \
 	--disable-tcl \
 	--disable-cxx \
