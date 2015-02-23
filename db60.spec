@@ -36,7 +36,7 @@
 Summary:	The Berkeley DB database library for C
 Name:		%{sname}%{binext}
 Version:	%{version}
-Release:	9
+Release:	10
 License:	BSD
 Group:		System/Libraries
 Url:		http://www.oracle.com/technology/software/products/berkeley-db/
@@ -168,9 +168,6 @@ Requires:	%{libdbjava} = %{EVRD}
 Requires:	%{libdbcxx} = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
 Provides:	%{sname}-devel = %{EVRD}
-# MD remove the following line if there is a newer fork of the same api
-# ie: this is 6.0 and there is a fork of 6.1 or 6.2....
-Provides:	%{sname}%{shortapi}-devel = %{EVRD}
 
 %description -n	%{devname}
 This package contains the header files, libraries, and documentation for
@@ -465,16 +462,13 @@ mv %{buildroot}%{_bindir}/{dbsql,db%{api}_sql}
 %files -n %{libname}
 %doc LICENSE README
 %{_libdir}/libdb-%{api}.so
-%{_libdir}/libdb-6.so
 
 %files -n %{libdbcxx}
 %{_libdir}/libdb_cxx-%{api}.so
-%{_libdir}/libdb_cxx-6.so
 
 %if %{with sql}
 %files -n %{libdbsql}
 %{_libdir}/libdb_sql-%{api}.so
-%{_libdir}/libdb_sql-6.so
 %endif
 
 %if %{with java}
@@ -546,9 +540,12 @@ mv %{buildroot}%{_bindir}/{dbsql,db%{api}_sql}
 %endif
 %{_includedir}/db.h
 %{_libdir}/libdb.so
+%{_libdir}/libdb-6.so
 %{_libdir}/libdb_cxx.so
+%{_libdir}/libdb_cxx-6.so
 %if %{with sql}
 %{_libdir}/libdb_sql.so
+%{_libdir}/libdb_sql-6.so
 %endif
 %if %{with tcl}
 %{_libdir}/libdb_tcl.so
