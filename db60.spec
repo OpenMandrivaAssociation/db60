@@ -1,5 +1,4 @@
 %define sname	db
-%define version 6.0.30
 %define api %(echo %{version}|cut -d. -f1,2)
 %define shortapi %(echo %{version}|cut -d. -f1,1)
 %define binext	%(echo %{api} | sed -e 's|\\.||g')
@@ -35,12 +34,12 @@
 
 Summary:	The Berkeley DB database library for C
 Name:		%{sname}%{binext}
-Version:	%{version}
-Release:	13
+Version:	6.0.35
+Release:	1
 License:	BSD
 Group:		System/Libraries
 Url:		http://www.oracle.com/technology/software/products/berkeley-db/
-Source0:	http://download.oracle.com/berkeley-db/db-%{version}.tar.gz
+Source0:	https://download.oracle.com/otn/berkeley-db/db-%{version}.tar.gz
 # statically link db1 library
 Patch0:		db-5.1.19-db185.patch
 Patch1:		db-5.1.25-sql_flags.patch
